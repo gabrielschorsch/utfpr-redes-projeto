@@ -1,0 +1,22 @@
+*{
+}
+
+.img {
+    height: 3rem;
+}
+
+.filter_green {
+    filter: invert(46%) sepia(89%) saturate(350%) hue-rotate(84deg) brightness(98%) contrast(92%)
+}
+
+.filter_red  {
+    filter: invert(23%) sepia(75%) saturate(2963%) hue-rotate(349deg) brightness(91%) contrast(83%)
+}
+
+.filter_blue {
+    filter: invert(20%) sepia(100%) saturate(748%) hue-rotate(189deg) brightness(95%) contrast(85%)
+}
+
+.filter_purple {
+    filter:invert(16%) sepia(74%) saturate(3430%) hue-rotate(292deg) brightness(92%) contrast(92%)
+}

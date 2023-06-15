@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link type='text/css' rel='stylesheet' href='./style.css'>
+    <title>Projeto Redes - Calculadora de IP</title>
+</head>
+
+<body>
+    <h1>Calculadora de IP</h1>
+    <section class="ip_inputs">
+        <label for="ip">Quantidade de máquinas</label>
+        <input type="text" name="ip" id="ip" />
+        <button onclick="addIp()">+</button>
+    </section>
+    <section class="networkList">
+    </section>
+    <button onclick="calculateIps()">Calcular</button>
+</body>
+
+<script>
+    const quantityList = [];
+
+    function getFilter(maskBinary,  maxValue = 32) {
+        const filterList = ["filter_green", 'filter_red', "filter_blue", "filter_purple"];
+
+        switch(Math.round((maskBinary * 100) / maxValue) % filterList.length) {
+            case 0:
+                return filterList[0];
+            case 1:
+                return filterList[1];
+            case 2:
+                return filterList[2];
+            case 3:
+                return filterList[3];
+        }
+    }
+
+    function pushIpToList() {
+        const ipInput = document.querySelector('#ip');
+        if (ipInput.value != 0) {
+            quantityList.push(ip.value);
+            ipInput.value = '';
+            return 1;
+        }
+        alert("Valor invalido")
+        ipInput.value = '';
+        return 0
+    }
+
+    function concatHtml(current, maskBinary) {
+        const randomFilter = getFilter(maskBinary);
+        console.log(randomFilter)
+        const networkList = document.querySelector('.networkList');
+        networkList.innerHTML += `<div class="ipItem" style="display:flex;align-items:center;">
+                        <div style="margin: 0em 2em;">
+                            <img class="img ${randomFilter}" src="./assets/network-svgrepo-com.svg"/>
+                        </div>
+                        <div>
+                            <h3> Rede ${quantityList.length}</h3> 
+                            <p>Quantidade de máquinas: ${current}</p>
+                            <p>Máscara: /${maskBinary}</p>
+                        </div>
+                    </div>
+            `
+    }
+
+    function addIp() {
+        if (pushIpToList()) {
+            const current = quantityList.reverse()[0];
+            console.log(current)
+            const mask = Math.ceil(Math.log2(current));
+            const maskBinary = 32 - mask;
+            concatHtml(current, maskBinary);
+        }
+    }
+
+
+    function calculateIps(){
+
+    }
+    
+</script>
+
+</html>
